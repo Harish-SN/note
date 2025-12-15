@@ -1,0 +1,181 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif;
+}
+
+body {
+    background: #1b1b1f;
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+    height: 100vh;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.light {
+    background: #f4f4f7;
+    color: #222;
+}
+
+body {
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+#bgCanvas {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+}
+
+#controls {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 1000;
+}
+
+#controls button {
+    padding: 8px 14px;
+    border-radius: 14px;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    background: #2a2a2f;
+    color: #fff;
+    transition: transform 0.15s ease;
+}
+
+#controls button:active {
+    transform: scale(0.96);
+}
+
+#notesContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding-top: 70px;
+}
+
+.note {
+    position: absolute;
+    width: 240px;
+    min-height: 150px;
+    background: linear-gradient(145deg, #fff8b0, #ffeaa0);
+    border-radius: 18px;
+    padding: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.4);
+    display: flex;
+    flex-direction: column;
+    cursor: grab;
+    overflow: hidden;
+    color: #000;
+    touch-action: none;
+}
+
+.note.dragging {
+    transform: scale(1.05);
+}
+
+.note.pinned {
+    border: 2px solid #c8b560;
+}
+
+.note .top-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+.note .top-buttons button {
+    padding: 6px 8px;
+    border-radius: 8px;
+    border: none;
+    font-size: 12px;
+    background: rgba(0,0,0,.12);
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+.note .top-buttons button:active {
+    transform: scale(0.95);
+}
+
+.note textarea {
+    flex: 1;
+    border: none;
+    background: transparent;
+    resize: none;
+    outline: none;
+    font-size: 15px;
+    color: inherit;
+}
+
+.resize-handle {
+    position: absolute;
+    right: 6px;
+    bottom: 6px;
+    width: 20px;
+    height: 20px;
+    background: rgba(0,0,0,.25);
+    border-radius: 6px;
+    cursor: nwse-resize;
+}
+
+.note.minimized textarea {
+    display: none;
+}
+
+.note.minimized .resize-handle {
+    display: none;
+}
+
+@media (max-width: 600px) {
+
+    body {
+        overflow: auto;
+    }
+
+    #controls {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #notesContainer {
+        padding-top: 90px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+    }
+
+    .note {
+        position: relative !important;
+        width: 90vw;
+        max-width: 360px;
+        left: auto !important;
+        top: auto !important;
+        cursor: default;
+        margin: 0 auto;
+    }
+
+    .resize-handle {
+        width: 28px;
+        height: 28px;
+    }
+
+    .note .top-buttons button {
+        font-size: 13px;
+        padding: 8px 10px;
+    }
+
+    textarea {
+        font-size: 16px;
+    }
+}
