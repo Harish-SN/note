@@ -12,15 +12,12 @@ body {
     position: relative;
     height: 100vh;
     transition: background 0.3s ease, color 0.3s ease;
+    padding-bottom: env(safe-area-inset-bottom);
 }
 
 body.light {
     background: #f4f4f7;
     color: #222;
-}
-
-body {
-    padding-bottom: env(safe-area-inset-bottom);
 }
 
 #bgCanvas {
@@ -148,7 +145,7 @@ body {
     }
 
     #notesContainer {
-        padding-top: 90px;
+        padding-top: 150px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -175,7 +172,7 @@ body {
         padding: 8px 10px;
     }
 
-    textarea {
+    .note textarea {
         font-size: 16px;
     }
 }
